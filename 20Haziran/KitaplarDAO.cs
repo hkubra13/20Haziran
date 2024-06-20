@@ -42,7 +42,7 @@ namespace _20Haziran
             connection.Close();
             return returnThese;
         }
-        public List<Kitap> searchTitles(String searchTerm)
+        public List<Kitap> searchTitles(string searchTerm)
         {
             List<Kitap> returnThese = new List<Kitap>();
 

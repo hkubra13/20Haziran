@@ -23,7 +23,7 @@ namespace _20Haziran
             {
                 kitapAd = kAd_txt.Text,
                 yazarAd = yAd_txt.Text,
-                sayfaNo = Int32.Parse(sayfaS_txt.Text),
+                sayfaNo = int.Parse(sayfaS_txt.Text),
                 yayınevi = yEv_txt.Text,
                 basimTarihi = DateTime.Parse(bTarih_txt.Text),
 
