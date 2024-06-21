@@ -44,12 +44,43 @@ namespace _20Haziran
             form2.Show();
         }
 
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView dataGridView = (DataGridView)sender;
+            int rowClicked = dataGridView.CurrentRow.Index;
 
+            KitaplarDAO kitaplarDAO = new KitaplarDAO();
+            kitapBindingSource.DataSource = kitaplarDAO.gosterKitap((int)dataGridView.Rows[rowClicked].Cells[0].Value);
+            dataGridView2.DataSource = kitapBindingSource;
+        }
 
-        /*
-private void label6_Click(object sender, EventArgs e)
-{
-   ((Label)sender).Text = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
-} */
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+            if (dataGridView1.SelectedRows.Count == 1)
+            {
+                int rowClicked = dataGridView1.CurrentRow.Index;
+
+                KitaplarDAO kitaplarDAO = new KitaplarDAO();
+                Kitap kitap = kitaplarDAO.gosterKitap((int)dataGridView1.Rows[rowClicked].Cells[0].Value);
+
+                Form3 form3 = new Form3(kitap);
+                form3.Show();
+            }
+            else
+            {
+                MessageBox.Show("Lütfen bir satýr seçiniz.");
+            }
+        }
+
+        private void sil_button_Click(object sender, EventArgs e)
+        {
+            int rowClicked = dataGridView1.CurrentRow.Index;
+            int kitapID = (int)dataGridView1.Rows[rowClicked].Cells[0].Value;
+
+            KitaplarDAO kitaplarDAO=new KitaplarDAO();
+            int result = kitaplarDAO.deleteKitap(kitapID);
+            MessageBox.Show(result + " kayýt silindi");
+        }
     }
 }

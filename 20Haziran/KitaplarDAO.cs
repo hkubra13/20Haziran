@@ -1,6 +1,8 @@
-﻿using System;
+﻿using _20Haziran;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,8 +14,8 @@ namespace _20Haziran
         string connectionString = "Data Source=KUBRA\\SQLEXPRESS02;Initial Catalog=_20Haziran;User ID=sa;Password=123456;Integrated Security=True;";
 
 
-        public List<Kitap> getAllKitaplar() 
-        { 
+        public List<Kitap> getAllKitaplar()
+        {
             List<Kitap> returnThese = new List<Kitap>();
 
             SqlConnection connection = new SqlConnection(connectionString);
@@ -21,7 +23,7 @@ namespace _20Haziran
 
             SqlCommand command = new SqlCommand("SELECT * FROM kitapevi", connection);
 
-            using(SqlDataReader reader = command.ExecuteReader())
+            using (SqlDataReader reader = command.ExecuteReader())
             {
                 while (reader.Read())
                 {
@@ -95,7 +97,70 @@ namespace _20Haziran
             connection.Close();
             return newRows;
         }
-    }
-    
 
+        public Kitap gosterKitap(int kitapId)
+        {
+
+
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            Kitap kitap = new Kitap();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT * FROM kitapevi WHERE kitapId = @kitapid";
+            command.Parameters.AddWithValue("@kitapid", kitapId);
+            command.Connection = connection;
+
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+
+                    kitap.kitapId = reader.GetInt32(0);
+                    kitap.kitapAd = reader.GetString(1);
+                    kitap.yazarAd = reader.GetString(2);
+                    kitap.sayfaNo = reader.GetInt32(3);
+                    kitap.yayınevi = reader.GetString(4);
+                    kitap.basimTarihi = reader.GetDateTime(5);
+
+
+                }
+            }
+            connection.Close();
+            return kitap;
+        }
+
+        internal int updateKitap( Kitap kitap)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            SqlCommand command = new SqlCommand("UPDATE kitapevi SET kitapAd = @kad, yazarAd = @yad, sayfaNo = @sayfa, yayınevi = @yayın, basimTarihi = @basım WHERE kitapId = @kitapid", connection);
+            command.Parameters.AddWithValue("@kitapid", kitap.kitapId);
+            command.Parameters.AddWithValue("@kad", kitap.kitapAd);
+            command.Parameters.AddWithValue("@yad", kitap.yazarAd);
+            command.Parameters.AddWithValue("@sayfa", kitap.sayfaNo);
+            command.Parameters.AddWithValue("@yayın", kitap.yayınevi);
+            command.Parameters.AddWithValue("@basım", kitap.basimTarihi);
+
+            int rowsAffected = command.ExecuteNonQuery();
+            connection.Close();
+            return rowsAffected;
+        }
+
+        internal int deleteKitap(int kitapID)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            SqlCommand command = new SqlCommand("DELETE FROM kitapevi WHERE kitapId = @kitapid", connection);
+            command.Parameters.AddWithValue("@kitapid", kitapID);
+            int result = command.ExecuteNonQuery();
+
+            connection.Close();
+            return result;
+        }
+    }
 }
+
+

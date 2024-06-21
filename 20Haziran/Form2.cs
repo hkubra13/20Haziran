@@ -25,7 +25,7 @@ namespace _20Haziran
                 yazarAd = yAd_txt.Text,
                 sayfaNo = int.Parse(sayfaS_txt.Text),
                 yayınevi = yEv_txt.Text,
-                basimTarihi = DateTime.Parse(bTarih_txt.Text),
+                basimTarihi = dateTimePicker1.Value,
 
             };
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _20Haziran
 {
-    internal class Kitap
+    public class Kitap
     {
         public int kitapId { get; set; }
         public string kitapAd { get; set; }

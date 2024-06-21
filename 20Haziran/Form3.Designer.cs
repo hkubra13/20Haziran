@@ -1,6 +1,6 @@
 ﻿namespace _20Haziran
 {
-    partial class Form2
+    partial class Form3
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
-            dateTimePicker1 = new DateTimePicker();
             button3 = new Button();
             yEv_txt = new TextBox();
             sayfaS_txt = new TextBox();
@@ -40,12 +39,12 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
+            dateTimePicker1 = new DateTimePicker();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(dateTimePicker1);
             groupBox1.Controls.Add(button3);
             groupBox1.Controls.Add(yEv_txt);
             groupBox1.Controls.Add(sayfaS_txt);
@@ -56,19 +55,12 @@
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
-            groupBox1.Location = new Point(259, 47);
+            groupBox1.Location = new Point(269, 56);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(379, 311);
-            groupBox1.TabIndex = 5;
+            groupBox1.Size = new Size(370, 293);
+            groupBox1.TabIndex = 6;
             groupBox1.TabStop = false;
-            groupBox1.Text = "Kitap Ekle";
-            // 
-            // dateTimePicker1
-            // 
-            dateTimePicker1.Location = new Point(107, 212);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(250, 27);
-            dateTimePicker1.TabIndex = 6;
+            groupBox1.Text = "Kitap Güncelle";
             // 
             // button3
             // 
@@ -76,7 +68,7 @@
             button3.Name = "button3";
             button3.Size = new Size(80, 34);
             button3.TabIndex = 5;
-            button3.Text = "Ekle";
+            button3.Text = "Güncelle";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
@@ -153,14 +145,22 @@
             label1.TabIndex = 0;
             label1.Text = "Kitap Adı :";
             // 
-            // Form2
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Location = new Point(382, 273);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(250, 27);
+            dateTimePicker1.TabIndex = 7;
+            // 
+            // Form3
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(dateTimePicker1);
             Controls.Add(groupBox1);
-            Name = "Form2";
-            Text = "Form2";
+            Name = "Form3";
+            Text = "Form3";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);

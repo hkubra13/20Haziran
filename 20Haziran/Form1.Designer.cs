@@ -33,7 +33,11 @@
             button2 = new Button();
             textBox1 = new TextBox();
             button3 = new Button();
+            dataGridView2 = new DataGridView();
+            button4 = new Button();
+            sil_button = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
             // 
             // button1
@@ -54,6 +58,7 @@
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(776, 246);
             dataGridView1.TabIndex = 1;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // button2
             // 
@@ -82,11 +87,43 @@
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
+            // dataGridView2
+            // 
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Location = new Point(12, 347);
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.RowHeadersWidth = 51;
+            dataGridView2.Size = new Size(416, 188);
+            dataGridView2.TabIndex = 5;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(573, 14);
+            button4.Name = "button4";
+            button4.Size = new Size(94, 27);
+            button4.TabIndex = 6;
+            button4.Text = "Güncelle";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
+            // 
+            // sil_button
+            // 
+            sil_button.Location = new Point(640, 308);
+            sil_button.Name = "sil_button";
+            sil_button.Size = new Size(94, 29);
+            sil_button.TabIndex = 7;
+            sil_button.Text = "Sil";
+            sil_button.UseVisualStyleBackColor = true;
+            sil_button.Click += sil_button_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 718);
+            ClientSize = new Size(1356, 718);
+            Controls.Add(sil_button);
+            Controls.Add(button4);
+            Controls.Add(dataGridView2);
             Controls.Add(button3);
             Controls.Add(textBox1);
             Controls.Add(button2);
@@ -95,6 +132,7 @@
             Name = "Form1";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -106,5 +144,8 @@
         private Button button2;
         private TextBox textBox1;
         private Button button3;
+        private DataGridView dataGridView2;
+        private Button button4;
+        private Button sil_button;
     }
 }
