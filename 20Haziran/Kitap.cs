@@ -15,5 +15,6 @@ namespace _20Haziran
         public string yayınevi { get; set; }
         public DateTime basimTarihi { get; set; }
 
+
     }
 }

@@ -21,7 +21,7 @@ namespace _20Haziran
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
 
-            SqlCommand command = new SqlCommand("SELECT * FROM kitapevi", connection);
+            SqlCommand command = new SqlCommand("SELECT kitapId, kitapAd, yazarAd, sayfaNo, yayıneviAd, basimTarihi FROM kitapevi\r\nLEFT JOIN yazar on kitapevi.yazarId = yazar.yazarId \r\nLEFT JOIN yayınevi on kitapevi.yayıneviId = yayınevi.yayıneviId", connection);
 
             using (SqlDataReader reader = command.ExecuteReader())
             {
@@ -54,7 +54,7 @@ namespace _20Haziran
             string searchWildPhrase = "%" + searchTerm + "%";
 
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT * FROM kitapevi WHERE kitapAd LIKE @search";
+            command.CommandText = "SELECT kitapId, kitapAd, yazarAd, sayfaNo, yayıneviAd, basimTarihi FROM kitapevi\r\nLEFT JOIN yazar on kitapevi.yazarId = yazar.yazarId \r\nLEFT JOIN yayınevi on kitapevi.yayıneviId = yayınevi.yayıneviId WHERE kitapAd LIKE @search";
             command.Parameters.AddWithValue("@search", searchWildPhrase);
             command.Connection = connection;
 
@@ -107,7 +107,7 @@ namespace _20Haziran
 
             Kitap kitap = new Kitap();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT * FROM kitapevi WHERE kitapId = @kitapid";
+            command.CommandText = "SELECT kitapId, kitapAd, yazarAd, sayfaNo, yayıneviAd, basimTarihi FROM kitapevi\r\nLEFT JOIN yazar on kitapevi.yazarId = yazar.yazarId \r\nLEFT JOIN yayınevi on kitapevi.yayıneviId = yayınevi.yayıneviId WHERE kitapId = @kitapid";
             command.Parameters.AddWithValue("@kitapid", kitapId);
             command.Connection = connection;
 
