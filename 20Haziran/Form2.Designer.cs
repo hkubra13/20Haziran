@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            yEv_txt = new ComboBox();
+            yAd_txt = new ComboBox();
             dateTimePicker1 = new DateTimePicker();
             button3 = new Button();
-            yEv_txt = new TextBox();
             sayfaS_txt = new TextBox();
-            yAd_txt = new TextBox();
             kAd_txt = new TextBox();
             label5 = new Label();
             label4 = new Label();
@@ -45,11 +45,11 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(yEv_txt);
+            groupBox1.Controls.Add(yAd_txt);
             groupBox1.Controls.Add(dateTimePicker1);
             groupBox1.Controls.Add(button3);
-            groupBox1.Controls.Add(yEv_txt);
             groupBox1.Controls.Add(sayfaS_txt);
-            groupBox1.Controls.Add(yAd_txt);
             groupBox1.Controls.Add(kAd_txt);
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(label4);
@@ -62,6 +62,22 @@
             groupBox1.TabIndex = 5;
             groupBox1.TabStop = false;
             groupBox1.Text = "Kitap Ekle";
+            // 
+            // yEv_txt
+            // 
+            yEv_txt.FormattingEnabled = true;
+            yEv_txt.Location = new Point(107, 171);
+            yEv_txt.Name = "yEv_txt";
+            yEv_txt.Size = new Size(151, 28);
+            yEv_txt.TabIndex = 10;
+            // 
+            // yAd_txt
+            // 
+            yAd_txt.FormattingEnabled = true;
+            yAd_txt.Location = new Point(107, 83);
+            yAd_txt.Name = "yAd_txt";
+            yAd_txt.Size = new Size(151, 28);
+            yAd_txt.TabIndex = 9;
             // 
             // dateTimePicker1
             // 
@@ -80,26 +96,12 @@
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
-            // yEv_txt
-            // 
-            yEv_txt.Location = new Point(113, 174);
-            yEv_txt.Name = "yEv_txt";
-            yEv_txt.Size = new Size(125, 27);
-            yEv_txt.TabIndex = 8;
-            // 
             // sayfaS_txt
             // 
             sayfaS_txt.Location = new Point(113, 129);
             sayfaS_txt.Name = "sayfaS_txt";
             sayfaS_txt.Size = new Size(125, 27);
             sayfaS_txt.TabIndex = 7;
-            // 
-            // yAd_txt
-            // 
-            yAd_txt.Location = new Point(113, 76);
-            yAd_txt.Name = "yAd_txt";
-            yAd_txt.Size = new Size(125, 27);
-            yAd_txt.TabIndex = 6;
             // 
             // kAd_txt
             // 
@@ -161,6 +163,7 @@
             Controls.Add(groupBox1);
             Name = "Form2";
             Text = "Form2";
+            Load += Form2_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);
@@ -170,9 +173,7 @@
 
         private GroupBox groupBox1;
         private Button button3;
-        private TextBox yEv_txt;
         private TextBox sayfaS_txt;
-        private TextBox yAd_txt;
         private TextBox kAd_txt;
         private Label label5;
         private Label label4;
@@ -180,5 +181,7 @@
         private Label label2;
         private Label label1;
         private DateTimePicker dateTimePicker1;
+        private ComboBox yAd_txt;
+        private ComboBox yEv_txt;
     }
 }

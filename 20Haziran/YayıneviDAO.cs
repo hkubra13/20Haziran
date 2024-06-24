@@ -59,5 +59,30 @@ namespace _20Haziran
             }
 
         }
+
+        public int AddOneYazar(Yayınevi yayınevi)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+            SqlCommand command = new SqlCommand("INSERT INTO yayınevi(yayıneviAd) VALUES(@yad)", connection);
+            command.Parameters.AddWithValue("@yad", yayınevi.yayıneviAd);
+            int newRows = command.ExecuteNonQuery();
+
+            connection.Close();
+            return newRows;
+        }
+
+        public int DeleteYayınevi(int yayıneviId)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            SqlCommand command = new SqlCommand("DELETE FROM yayınevi WHERE yayıneviId = @yayineviid", connection);
+            command.Parameters.AddWithValue("@yayineviid", yayıneviId);
+            int result = command.ExecuteNonQuery();
+
+            connection.Close();
+            return result;
+        }
     }
 }

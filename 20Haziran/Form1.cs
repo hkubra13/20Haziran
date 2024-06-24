@@ -49,9 +49,7 @@ namespace _20Haziran
             DataGridView dataGridView = (DataGridView)sender;
             int rowClicked = dataGridView.CurrentRow.Index;
 
-            KitaplarDAO kitaplarDAO = new KitaplarDAO();
-            kitapBindingSource.DataSource = kitaplarDAO.gosterKitap((int)dataGridView.Rows[rowClicked].Cells[0].Value);
-            dataGridView2.DataSource = kitapBindingSource;
+
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -78,9 +76,34 @@ namespace _20Haziran
             int rowClicked = dataGridView1.CurrentRow.Index;
             int kitapID = (int)dataGridView1.Rows[rowClicked].Cells[0].Value;
 
-            KitaplarDAO kitaplarDAO=new KitaplarDAO();
+            KitaplarDAO kitaplarDAO = new KitaplarDAO();
             int result = kitaplarDAO.deleteKitap(kitapID);
             MessageBox.Show(result + " kayýt silindi");
+        }
+
+        private void YazarEkle_Click(object sender, EventArgs e)
+        {
+            YazarEkle yazarekle = new YazarEkle();
+            yazarekle.Show();
+        }
+
+        private void YayýneviEkle_Click(object sender, EventArgs e)
+        {
+            YayýneviEkle yayýneviekle = new YayýneviEkle();
+            yayýneviekle.Show();
+        }
+
+        private void YazarSil_Click(object sender, EventArgs e)
+        {
+            YazarSil yazarsil = new YazarSil();
+            yazarsil.Show();
+
+        }
+
+        private void YayýneviSil_Click(object sender, EventArgs e)
+        {
+            YayýneviSil yayýnevisil = new YayýneviSil();
+            yayýnevisil.Show();
         }
     }
 }

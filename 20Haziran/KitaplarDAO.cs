@@ -27,17 +27,17 @@ namespace _20Haziran
             {
                 while (reader.Read())
                 {
-                    Kitap kitap = new Kitap
-                    {
-                        kitapId = reader.GetInt32(0),
-                        kitapAd = reader.GetString(1),
-                        yazarAd = reader.GetString(2),
-                        sayfaNo = reader.GetInt32(3),
-                        yayınevi = reader.GetString(4),
-                        basimTarihi = reader.GetDateTime(5)
+                    Kitap kitap = new Kitap();
 
+                    kitap.kitapId = reader.GetInt32(reader.GetOrdinal("kitapId"));
+                    kitap.kitapAd = reader.IsDBNull(reader.GetOrdinal("kitapAd")) ? "Unknown" : reader.GetString(reader.GetOrdinal("kitapAd"));
+                    kitap.yazarAd = reader.IsDBNull(reader.GetOrdinal("yazarAd")) ? "Unknown" : reader.GetString(reader.GetOrdinal("yazarAd"));
+                    kitap.sayfaNo = reader.IsDBNull(reader.GetOrdinal("sayfaNo")) ? 0 : reader.GetInt32(reader.GetOrdinal("sayfaNo"));
+                    kitap.yayınevi = reader.IsDBNull(reader.GetOrdinal("yayıneviAd")) ? "Unknown" : reader.GetString(reader.GetOrdinal("yayıneviAd"));
+                    kitap.basimTarihi = reader.IsDBNull(reader.GetOrdinal("basimTarihi")) ? DateTime.MinValue : reader.GetDateTime(reader.GetOrdinal("basimTarihi"));
 
-                    };
+                    returnThese.Add(kitap);
+
                     returnThese.Add(kitap);
                 }
             }
@@ -85,18 +85,20 @@ namespace _20Haziran
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
 
-            SqlCommand command = new SqlCommand("INSERT INTO kitapevi (kitapAd, yazarAd, sayfaNo, yayınevi, basimTarihi) VALUES (@kad, @yad, @sayfa, @yayın, @basım)",
+            SqlCommand command = new SqlCommand("INSERT INTO kitapevi (kitapAd, yazarId, sayfaNo, yayıneviId, basimTarihi) VALUES (@kad, @yad, @sayfa, @yayın, @basım)",
             connection);
             command.Parameters.AddWithValue("@kad", kitap.kitapAd);
-            command.Parameters.AddWithValue("@yad", kitap.yazarAd);
+            command.Parameters.AddWithValue("@yad", kitap.yazarId);
             command.Parameters.AddWithValue("@sayfa", kitap.sayfaNo);
-            command.Parameters.AddWithValue("@yayın", kitap.yayınevi);
+            command.Parameters.AddWithValue("@yayın", kitap.yayıneviId);
             command.Parameters.AddWithValue("@basım", kitap.basimTarihi);
             int newRows = command.ExecuteNonQuery();
 
             connection.Close();
             return newRows;
         }
+
+
 
         public Kitap gosterKitap(int kitapId)
         {
@@ -164,3 +166,22 @@ namespace _20Haziran
 }
 
 
+/*
+ 
+ 
+                    Kitap kitap = new Kitap();
+
+
+                    kitap.kitapId = reader.GetInt32(reader.GetOrdinal("kitapId"));
+                    kitap.kitapAd = reader.GetString(reader.GetOrdinal("kitapAd"));
+                    kitap.yazarAd = reader.GetString(reader.GetOrdinal("yazarAd"));
+                    kitap.sayfaNo = reader.GetInt32(reader.GetOrdinal("sayfaNo"));
+                    kitap.yayınevi = reader.GetString(reader.GetOrdinal("yayıneviAd"));
+                    kitap.basimTarihi = reader.GetDateTime(reader.GetOrdinal("basimTarihi"));
+
+
+                    
+                    returnThese.Add(kitap);
+ 
+ 
+ */

@@ -61,6 +61,31 @@ namespace _20Haziran
 
         }
 
+        public int AddOneYazar(Yazar yazar)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+            SqlCommand command = new SqlCommand("INSERT INTO yazar(yazarAd) VALUES(@yad)", connection);
+            command.Parameters.AddWithValue("@yad", yazar.yazarAd);
+            int newRows = command.ExecuteNonQuery();
+
+            connection.Close();
+            return newRows;
+        }
+
+        public int DeleteYazar(int yazarId)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            SqlCommand command = new SqlCommand("DELETE FROM yazar WHERE yazarId = @yazarid", connection);
+            command.Parameters.AddWithValue("@yazarid", yazarId);
+            int result = command.ExecuteNonQuery();
+
+            connection.Close();
+            return result;
+        }
+
 
     }
 }
