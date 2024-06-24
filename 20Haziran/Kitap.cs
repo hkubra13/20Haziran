@@ -14,7 +14,9 @@ namespace _20Haziran
         public int sayfaNo { get; set; }
         public string yayınevi { get; set; }
         public DateTime basimTarihi { get; set; }
-
+        
+        public int yazarId { get; set; }
+        public int yayıneviId { get; set; }
 
     }
 }

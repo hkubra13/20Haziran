@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            yEv_txt = new ComboBox();
+            yAd_txt = new ComboBox();
             button3 = new Button();
             sayfaS_txt = new TextBox();
             kAd_txt = new TextBox();
@@ -38,8 +40,6 @@
             label2 = new Label();
             label1 = new Label();
             dateTimePicker1 = new DateTimePicker();
-            yAd_txt = new ComboBox();
-            yEv_txt = new ComboBox();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -61,6 +61,22 @@
             groupBox1.TabIndex = 6;
             groupBox1.TabStop = false;
             groupBox1.Text = "Kitap Güncelle";
+            // 
+            // yEv_txt
+            // 
+            yEv_txt.FormattingEnabled = true;
+            yEv_txt.Location = new Point(113, 174);
+            yEv_txt.Name = "yEv_txt";
+            yEv_txt.Size = new Size(151, 28);
+            yEv_txt.TabIndex = 9;
+            // 
+            // yAd_txt
+            // 
+            yAd_txt.FormattingEnabled = true;
+            yAd_txt.Location = new Point(113, 80);
+            yAd_txt.Name = "yAd_txt";
+            yAd_txt.Size = new Size(151, 28);
+            yAd_txt.TabIndex = 8;
             // 
             // button3
             // 
@@ -138,22 +154,6 @@
             dateTimePicker1.Size = new Size(250, 27);
             dateTimePicker1.TabIndex = 7;
             // 
-            // yAd_txt
-            // 
-            yAd_txt.FormattingEnabled = true;
-            yAd_txt.Location = new Point(113, 80);
-            yAd_txt.Name = "yAd_txt";
-            yAd_txt.Size = new Size(151, 28);
-            yAd_txt.TabIndex = 8;
-            // 
-            // yEv_txt
-            // 
-            yEv_txt.FormattingEnabled = true;
-            yEv_txt.Location = new Point(113, 174);
-            yEv_txt.Name = "yEv_txt";
-            yEv_txt.Size = new Size(151, 28);
-            yEv_txt.TabIndex = 9;
-            // 
             // Form3
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -163,6 +163,7 @@
             Controls.Add(groupBox1);
             Name = "Form3";
             Text = "Form3";
+            Load += Form3_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);

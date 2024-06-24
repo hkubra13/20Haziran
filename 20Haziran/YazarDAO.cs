@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
@@ -35,5 +36,31 @@ namespace _20Haziran
             connection.Close();
             return returnThese;
         }
+
+        public DataTableCollection GetYazarId()
+        {
+
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            SqlCommand command = new SqlCommand("SELECT * FROM yazar", connection);
+
+
+            SqlDataAdapter da = new SqlDataAdapter(command);
+
+
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+
+
+            command.ExecuteNonQuery();
+
+
+            connection.Close();
+            return ds.Tables;
+
+        }
+
+
     }
 }

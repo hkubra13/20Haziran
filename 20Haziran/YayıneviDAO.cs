@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -33,6 +34,30 @@ namespace _20Haziran
 
             connection.Close();
             return returnThese;
+        }
+        public DataTableCollection GetYayıneviId()
+        {
+
+            using (SqlConnection connection = new SqlConnection(connectionString)) 
+            { 
+                connection.Open();
+
+
+                SqlCommand command = new SqlCommand("SELECT * FROM yayınevi", connection);
+
+
+                SqlDataAdapter da = new SqlDataAdapter(command);
+
+                DataSet ds = new DataSet();
+
+                da.Fill(ds);
+
+                command.ExecuteNonQuery();
+
+                connection.Close();
+                return ds.Tables;
+            }
+
         }
     }
 }

@@ -130,17 +130,17 @@ namespace _20Haziran
             return kitap;
         }
 
-        internal int updateKitap( Kitap kitap)
+        internal int updateKitap(Kitap kitap)
         {
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
 
-            SqlCommand command = new SqlCommand("UPDATE kitapevi SET kitapAd = @kad, yazarAd = @yad, sayfaNo = @sayfa, yayınevi = @yayın, basimTarihi = @basım WHERE kitapId = @kitapid", connection);
+            SqlCommand command = new SqlCommand("UPDATE kitapevi SET kitapAd = @kad, yazarId = @yad, sayfaNo = @sayfa, yayıneviId = @yayın, basimTarihi = @basım WHERE kitapId = @kitapid", connection);
             command.Parameters.AddWithValue("@kitapid", kitap.kitapId);
             command.Parameters.AddWithValue("@kad", kitap.kitapAd);
-            command.Parameters.AddWithValue("@yad", kitap.yazarAd);
+            command.Parameters.AddWithValue("@yad", kitap.yazarId);
             command.Parameters.AddWithValue("@sayfa", kitap.sayfaNo);
-            command.Parameters.AddWithValue("@yayın", kitap.yayınevi);
+            command.Parameters.AddWithValue("@yayın", kitap.yayıneviId);
             command.Parameters.AddWithValue("@basım", kitap.basimTarihi);
 
             int rowsAffected = command.ExecuteNonQuery();
