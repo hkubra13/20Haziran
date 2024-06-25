@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace _20Haziran
 {
@@ -19,6 +20,12 @@ namespace _20Haziran
 
         private void YazarEkle2_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(YazarEkle_txt.Text))
+            {
+                MessageBox.Show("Lütfen bir yazar ismi giriniz.");
+                return;
+            }
+
             Yazar yazar = new Yazar()
             {
                 yazarAd = YazarEkle_txt.Text,

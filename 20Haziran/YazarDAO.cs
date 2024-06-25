@@ -19,19 +19,20 @@ namespace _20Haziran
             List<Yazar> returnThese = new List<Yazar>();
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
-            Yazar yazar = new Yazar();
+
             SqlCommand command = new SqlCommand("SELECT * FROM yazar", connection);
 
             using (SqlDataReader reader = command.ExecuteReader())
             {
                 while (reader.Read())
                 {
-
+                    Yazar yazar = new Yazar();
                     yazar.yazarId = reader.GetInt32(0);
                     yazar.yazarAd = reader.GetString(1);
+                    returnThese.Add(yazar);
                 }
             }
-            returnThese.Add(yazar);
+
 
             connection.Close();
             return returnThese;
@@ -86,6 +87,34 @@ namespace _20Haziran
             return result;
         }
 
+        public List<Yazar> searchTitles(string searchTerm)
+        {
+            List<Yazar> returnThese = new List<Yazar>();
 
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            string searchWildPhrase = "%" + searchTerm + "%";
+
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT * FROM yazar WHERE yazarAd LIKE @search";
+            command.Parameters.AddWithValue("@search", searchWildPhrase);
+            command.Connection = connection;
+
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Yazar yazar = new Yazar();
+                    yazar.yazarId = reader.GetInt32(0);
+                    yazar.yazarAd = reader.GetString(1);
+                    returnThese.Add(yazar);
+                }
+            }
+
+
+            connection.Close();
+            return returnThese;
+        }
     }
 }

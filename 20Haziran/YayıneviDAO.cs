@@ -18,19 +18,20 @@ namespace _20Haziran
             List<Yayınevi> returnThese = new List<Yayınevi>();
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
-            Yayınevi yayınevi = new Yayınevi();
+
             SqlCommand command = new SqlCommand("SELECT * FROM yayınevi", connection);
 
             using (SqlDataReader reader = command.ExecuteReader())
             {
                 while (reader.Read())
                 {
-
+                    Yayınevi yayınevi = new Yayınevi();
                     yayınevi.yayıneviId = reader.GetInt32(0);
                     yayınevi.yayıneviAd = reader.GetString(1);
+                    returnThese.Add(yayınevi);
                 }
             }
-            returnThese.Add(yayınevi);
+
 
             connection.Close();
             return returnThese;
@@ -83,6 +84,36 @@ namespace _20Haziran
 
             connection.Close();
             return result;
+        }
+
+        public List<Yayınevi> searchTitles(string searchTerm)
+        {
+            List<Yayınevi> returnThese = new List<Yayınevi>();
+
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            string searchWildPhrase = "%" + searchTerm + "%";
+
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT * FROM yayınevi WHERE yayıneviAd LIKE @search";
+            command.Parameters.AddWithValue("@search", searchWildPhrase);
+            command.Connection = connection;
+
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Yayınevi yayınevi = new Yayınevi();
+                    yayınevi.yayıneviId = reader.GetInt32(0);
+                    yayınevi.yayıneviAd = reader.GetString(1);
+                    returnThese.Add(yayınevi);
+                }
+            }
+
+
+            connection.Close();
+            return returnThese;
         }
     }
 }

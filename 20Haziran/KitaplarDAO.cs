@@ -35,9 +35,6 @@ namespace _20Haziran
                     kitap.sayfaNo = reader.IsDBNull(reader.GetOrdinal("sayfaNo")) ? 0 : reader.GetInt32(reader.GetOrdinal("sayfaNo"));
                     kitap.yayınevi = reader.IsDBNull(reader.GetOrdinal("yayıneviAd")) ? "Unknown" : reader.GetString(reader.GetOrdinal("yayıneviAd"));
                     kitap.basimTarihi = reader.IsDBNull(reader.GetOrdinal("basimTarihi")) ? DateTime.MinValue : reader.GetDateTime(reader.GetOrdinal("basimTarihi"));
-
-                    returnThese.Add(kitap);
-
                     returnThese.Add(kitap);
                 }
             }
@@ -62,17 +59,48 @@ namespace _20Haziran
             {
                 while (reader.Read())
                 {
-                    Kitap kitap = new Kitap
-                    {
-                        kitapId = reader.GetInt32(0),
-                        kitapAd = reader.GetString(1),
-                        yazarAd = reader.GetString(2),
-                        sayfaNo = reader.GetInt32(3),
-                        yayınevi = reader.GetString(4),
-                        basimTarihi = reader.GetDateTime(5)
+                    Kitap kitap = new Kitap();
+                    
+                    kitap.kitapId = reader.GetInt32(reader.GetOrdinal("kitapId"));
+                    kitap.kitapAd = reader.IsDBNull(reader.GetOrdinal("kitapAd")) ? "Unknown" : reader.GetString(reader.GetOrdinal("kitapAd"));
+                    kitap.yazarAd = reader.IsDBNull(reader.GetOrdinal("yazarAd")) ? "Unknown" : reader.GetString(reader.GetOrdinal("yazarAd"));
+                    kitap.sayfaNo = reader.IsDBNull(reader.GetOrdinal("sayfaNo")) ? 0 : reader.GetInt32(reader.GetOrdinal("sayfaNo"));
+                    kitap.yayınevi = reader.IsDBNull(reader.GetOrdinal("yayıneviAd")) ? "Unknown" : reader.GetString(reader.GetOrdinal("yayıneviAd"));
+                    kitap.basimTarihi = reader.IsDBNull(reader.GetOrdinal("basimTarihi")) ? DateTime.MinValue : reader.GetDateTime(reader.GetOrdinal("basimTarihi"));
+                    returnThese.Add(kitap);
+                 
+                }
+            }
+            connection.Close();
+            return returnThese;
+        }
 
+        public List<Kitap> searchAuthors(string searchTerm)
+        {
+            List<Kitap> returnThese = new List<Kitap>();
 
-                    };
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            string searchWildPhrase = "%" + searchTerm + "%";
+
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT kitapId, kitapAd, yazarAd, sayfaNo, yayıneviAd, basimTarihi FROM kitapevi\r\nLEFT JOIN yazar on kitapevi.yazarId = yazar.yazarId \r\nLEFT JOIN yayınevi on kitapevi.yayıneviId = yayınevi.yayıneviId WHERE yazarAd LIKE @search";
+            command.Parameters.AddWithValue("@search", searchWildPhrase);
+            command.Connection = connection;
+
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Kitap kitap = new Kitap();
+
+                    kitap.kitapId = reader.GetInt32(reader.GetOrdinal("kitapId"));
+                    kitap.kitapAd = reader.IsDBNull(reader.GetOrdinal("kitapAd")) ? "Unknown" : reader.GetString(reader.GetOrdinal("kitapAd"));
+                    kitap.yazarAd = reader.IsDBNull(reader.GetOrdinal("yazarAd")) ? "Unknown" : reader.GetString(reader.GetOrdinal("yazarAd"));
+                    kitap.sayfaNo = reader.IsDBNull(reader.GetOrdinal("sayfaNo")) ? 0 : reader.GetInt32(reader.GetOrdinal("sayfaNo"));
+                    kitap.yayınevi = reader.IsDBNull(reader.GetOrdinal("yayıneviAd")) ? "Unknown" : reader.GetString(reader.GetOrdinal("yayıneviAd"));
+                    kitap.basimTarihi = reader.IsDBNull(reader.GetOrdinal("basimTarihi")) ? DateTime.MinValue : reader.GetDateTime(reader.GetOrdinal("basimTarihi"));
                     returnThese.Add(kitap);
                 }
             }
@@ -80,6 +108,38 @@ namespace _20Haziran
             return returnThese;
         }
 
+        public List<Kitap> searchPublishers(string searchTerm)
+        {
+            List<Kitap> returnThese = new List<Kitap>();
+
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            string searchWildPhrase = "%" + searchTerm + "%";
+
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT kitapId, kitapAd, yazarAd, sayfaNo, yayıneviAd, basimTarihi FROM kitapevi\r\nLEFT JOIN yazar on kitapevi.yazarId = yazar.yazarId \r\nLEFT JOIN yayınevi on kitapevi.yayıneviId = yayınevi.yayıneviId WHERE yayıneviAd LIKE @search";
+            command.Parameters.AddWithValue("@search", searchWildPhrase);
+            command.Connection = connection;
+
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Kitap kitap = new Kitap();
+
+                    kitap.kitapId = reader.GetInt32(reader.GetOrdinal("kitapId"));
+                    kitap.kitapAd = reader.IsDBNull(reader.GetOrdinal("kitapAd")) ? "Unknown" : reader.GetString(reader.GetOrdinal("kitapAd"));
+                    kitap.yazarAd = reader.IsDBNull(reader.GetOrdinal("yazarAd")) ? "Unknown" : reader.GetString(reader.GetOrdinal("yazarAd"));
+                    kitap.sayfaNo = reader.IsDBNull(reader.GetOrdinal("sayfaNo")) ? 0 : reader.GetInt32(reader.GetOrdinal("sayfaNo"));
+                    kitap.yayınevi = reader.IsDBNull(reader.GetOrdinal("yayıneviAd")) ? "Unknown" : reader.GetString(reader.GetOrdinal("yayıneviAd"));
+                    kitap.basimTarihi = reader.IsDBNull(reader.GetOrdinal("basimTarihi")) ? DateTime.MinValue : reader.GetDateTime(reader.GetOrdinal("basimTarihi"));
+                    returnThese.Add(kitap);
+                }
+            }
+            connection.Close();
+            return returnThese;
+        }
         internal int addOneKitap(Kitap kitap)
         {
             SqlConnection connection = new SqlConnection(connectionString);

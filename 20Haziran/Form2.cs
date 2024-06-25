@@ -19,8 +19,22 @@ namespace _20Haziran
 
         private void button3_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(kAd_txt.Text))
+            {
+                MessageBox.Show("Lütfen bir kitap ismi giriniz.");
+                return;
+            }
 
-
+            if (string.IsNullOrEmpty(sayfaS_txt.Text))
+            {
+                MessageBox.Show("Lütfen sayfa sayısı giriniz.");
+                return;
+            }
+            if (!sayfaS_txt.Text.All(char.IsDigit))
+            {
+                MessageBox.Show("Lütfen sadece rakam kullanınız.");
+                return;
+            }
             Kitap kitap = new Kitap()
             {
                 kitapAd = kAd_txt.Text,

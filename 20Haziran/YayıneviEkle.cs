@@ -19,6 +19,13 @@ namespace _20Haziran
 
         private void YayıneviEkle2_Click(object sender, EventArgs e)
         {
+
+            if (string.IsNullOrEmpty(YayıneviEkle_txt.Text))
+            {
+                MessageBox.Show("Lütfen bir yayınevi ismi giriniz.");
+                return;
+            }
+
             Yayınevi yayınevi = new Yayınevi()
             {
                 yayıneviAd = YayıneviEkle_txt.Text,
