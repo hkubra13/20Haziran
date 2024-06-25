@@ -40,9 +40,10 @@
             YazarSil = new Button();
             Sekme = new TabControl();
             Kitap = new TabPage();
+            label3 = new Label();
+            textBoxYayıneviAdı = new TextBox();
             label2 = new Label();
             textBoxYazarAdı = new TextBox();
-            YazarAdıAra = new Button();
             label1 = new Label();
             Yayınevi = new TabPage();
             dataGridViewYayınevi = new DataGridView();
@@ -58,9 +59,6 @@
             YazarAra = new Button();
             YazarGoster = new Button();
             groupBox3 = new GroupBox();
-            label3 = new Label();
-            textBoxYayıneviAdı = new TextBox();
-            YayıneviAd = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             groupBox1.SuspendLayout();
             Sekme.SuspendLayout();
@@ -75,7 +73,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(628, 11);
+            button1.Location = new Point(728, 11);
             button1.Name = "button1";
             button1.Size = new Size(94, 27);
             button1.TabIndex = 0;
@@ -95,7 +93,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(1168, 67);
+            button2.Location = new Point(937, 263);
             button2.Name = "button2";
             button2.Size = new Size(94, 27);
             button2.TabIndex = 2;
@@ -122,7 +120,7 @@
             // 
             // button4
             // 
-            button4.Location = new Point(728, 11);
+            button4.Location = new Point(628, 11);
             button4.Name = "button4";
             button4.Size = new Size(94, 27);
             button4.TabIndex = 6;
@@ -186,10 +184,8 @@
             // 
             Kitap.Controls.Add(label3);
             Kitap.Controls.Add(textBoxYayıneviAdı);
-            Kitap.Controls.Add(YayıneviAd);
             Kitap.Controls.Add(label2);
             Kitap.Controls.Add(textBoxYazarAdı);
-            Kitap.Controls.Add(YazarAdıAra);
             Kitap.Controls.Add(label1);
             Kitap.Controls.Add(dataGridView1);
             Kitap.Controls.Add(groupBox1);
@@ -204,6 +200,22 @@
             Kitap.TabIndex = 0;
             Kitap.Text = "Kitap";
             Kitap.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(828, 204);
+            label3.Name = "label3";
+            label3.Size = new Size(96, 20);
+            label3.TabIndex = 17;
+            label3.Text = "Yayınevi Adı :";
+            // 
+            // textBoxYayıneviAdı
+            // 
+            textBoxYayıneviAdı.Location = new Point(828, 227);
+            textBoxYayıneviAdı.Name = "textBoxYayıneviAdı";
+            textBoxYayıneviAdı.Size = new Size(334, 27);
+            textBoxYayıneviAdı.TabIndex = 16;
             // 
             // label2
             // 
@@ -220,16 +232,6 @@
             textBoxYazarAdı.Name = "textBoxYazarAdı";
             textBoxYazarAdı.Size = new Size(334, 27);
             textBoxYazarAdı.TabIndex = 13;
-            // 
-            // YazarAdıAra
-            // 
-            YazarAdıAra.Location = new Point(1168, 145);
-            YazarAdıAra.Name = "YazarAdıAra";
-            YazarAdıAra.Size = new Size(94, 27);
-            YazarAdıAra.TabIndex = 12;
-            YazarAdıAra.Text = "Ara";
-            YazarAdıAra.UseVisualStyleBackColor = true;
-            YazarAdıAra.Click += YazarAdıAra_Click;
             // 
             // label1
             // 
@@ -384,32 +386,6 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "Ekle/Sil";
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(828, 204);
-            label3.Name = "label3";
-            label3.Size = new Size(96, 20);
-            label3.TabIndex = 17;
-            label3.Text = "Yayınevi Adı :";
-            // 
-            // textBoxYayıneviAdı
-            // 
-            textBoxYayıneviAdı.Location = new Point(828, 227);
-            textBoxYayıneviAdı.Name = "textBoxYayıneviAdı";
-            textBoxYayıneviAdı.Size = new Size(334, 27);
-            textBoxYayıneviAdı.TabIndex = 16;
-            // 
-            // YayıneviAd
-            // 
-            YayıneviAd.Location = new Point(1168, 227);
-            YayıneviAd.Name = "YayıneviAd";
-            YayıneviAd.Size = new Size(94, 27);
-            YayıneviAd.TabIndex = 15;
-            YayıneviAd.Text = "Ara";
-            YayıneviAd.UseVisualStyleBackColor = true;
-            YayıneviAd.Click += YayıneviAd_Click;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -418,6 +394,7 @@
             Controls.Add(Sekme);
             Name = "Form1";
             Text = "Form1";
+
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             groupBox1.ResumeLayout(false);
             Sekme.ResumeLayout(false);
@@ -464,10 +441,8 @@
         private Button YazarGoster;
         private Label label2;
         private TextBox textBoxYazarAdı;
-        private Button YazarAdıAra;
         private Label label1;
         private Label label3;
         private TextBox textBoxYayıneviAdı;
-        private Button YayıneviAd;
     }
 }

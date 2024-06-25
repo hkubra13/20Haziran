@@ -39,11 +39,14 @@ namespace _20Haziran
             {
                 kitapAd = kAd_txt.Text,
                 yazarId = (int)yAd_txt.SelectedValue,
-                sayfaNo = int.Parse(sayfaS_txt.Text),
                 yayıneviId = (int)yEv_txt.SelectedValue,
                 basimTarihi = dateTimePicker1.Value,
 
             };
+            if (int.TryParse(sayfaS_txt.Text, out int sayfaSayisi))
+            {
+                kitap.sayfaNo = sayfaSayisi;
+            }
 
             KitaplarDAO kitaplarDAO = new KitaplarDAO();
             int result = kitaplarDAO.addOneKitap(kitap);

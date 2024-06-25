@@ -12,15 +12,16 @@ using System.Text;
 
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Security.Cryptography.X509Certificates;
 
 namespace _20Haziran
 {
     public partial class Form1 : Form
     {
-        BindingSource kitapBindingSource = new BindingSource();
         KitaplarDAO kitaplarDAO = new KitaplarDAO();
         YayýneviDAO yayýneviDAO = new YayýneviDAO();
         YazarDAO yazarDAO = new YazarDAO();
+
         public Form1()
         {
             InitializeComponent();
@@ -29,24 +30,16 @@ namespace _20Haziran
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            BindingSource kitapBindingSource = new BindingSource();
             kitapBindingSource.DataSource = kitaplarDAO.getAllKitaplar();
             columns(kitapBindingSource);
-
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBox1.Text))
-            {
-                MessageBox.Show("Lütfen bir kitap ismi giriniz.");
-                return;
-            }
-
-            kitapBindingSource.DataSource = kitaplarDAO.searchTitles(textBox1.Text);
+            BindingSource kitapBindingSource = new BindingSource();
+            kitapBindingSource.DataSource = kitaplarDAO.searchTitles(textBox1.Text, textBoxYayýneviAdý.Text, textBoxYazarAdý.Text);
             columns(kitapBindingSource);
-
-
         }
 
         private void columns(BindingSource kitapBindingSource)
@@ -135,8 +128,9 @@ namespace _20Haziran
 
         private void YayýneviGoster_Click(object sender, EventArgs e)
         {
-            kitapBindingSource.DataSource = yayýneviDAO.getAllYayýnevleri();
-            dataGridViewYayýnevi.DataSource = kitapBindingSource;
+            BindingSource yayýneviBindingSource = new BindingSource();
+            yayýneviBindingSource.DataSource = yayýneviDAO.getAllYayýnevleri();
+            dataGridViewYayýnevi.DataSource = yayýneviBindingSource;
         }
 
         private void YayýneviAra_Click(object sender, EventArgs e)
@@ -146,16 +140,17 @@ namespace _20Haziran
                 MessageBox.Show("Lütfen bir yayýnevi ismi giriniz.");
                 return;
             }
-
-            kitapBindingSource.DataSource = yayýneviDAO.searchTitles(textBoxYayýnevi.Text);
-            dataGridViewYayýnevi.DataSource = kitapBindingSource;
+            BindingSource yayýneviBindingSource = new BindingSource();
+            yayýneviBindingSource.DataSource = yayýneviDAO.searchTitles(textBoxYayýnevi.Text);
+            dataGridViewYayýnevi.DataSource = yayýneviBindingSource;
 
         }
 
         private void YazarGoster_Click(object sender, EventArgs e)
         {
-            kitapBindingSource.DataSource = yazarDAO.getAllYazarlar();
-            dataGridViewYazar.DataSource = kitapBindingSource;
+            BindingSource yazarBindingSource = new BindingSource();
+            yazarBindingSource.DataSource = yazarDAO.getAllYazarlar();
+            dataGridViewYazar.DataSource = yazarBindingSource;
         }
 
         private void YazarAra_Click(object sender, EventArgs e)
@@ -165,33 +160,11 @@ namespace _20Haziran
                 MessageBox.Show("Lütfen bir yazar ismi giriniz.");
                 return;
             }
-
-            kitapBindingSource.DataSource = yazarDAO.searchTitles(textBoxYazar.Text);
-            dataGridViewYazar.DataSource = kitapBindingSource;
+            BindingSource yazarBindingSource = new BindingSource();
+            yazarBindingSource.DataSource = yazarDAO.searchTitles(textBoxYazar.Text);
+            dataGridViewYazar.DataSource = yazarBindingSource;
         }
 
-        private void YazarAdýAra_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(textBoxYazarAdý.Text))
-            {
-                MessageBox.Show("Lütfen bir yazar ismi giriniz.");
-                return;
-            }
 
-            kitapBindingSource.DataSource = kitaplarDAO.searchAuthors(textBoxYazarAdý.Text);
-            columns(kitapBindingSource);
-        }
-
-        private void YayýneviAd_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(textBoxYayýneviAdý.Text))
-            {
-                MessageBox.Show("Lütfen bir yayýnevi ismi giriniz.");
-                return;
-            }
-
-            kitapBindingSource.DataSource = kitaplarDAO.searchPublishers(textBoxYayýneviAdý.Text);
-            columns(kitapBindingSource);
-        }
     }
 }
